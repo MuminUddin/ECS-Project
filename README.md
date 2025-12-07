@@ -1,57 +1,39 @@
 # ECS Project – Gatus Uptime Monitoring
 
-This repository contains my ECS project from the CoderCo bootcamp.
+This repository contains my ECS project for the CoderCo bootcamp.
 
-The goal is to take a real open source app (Gatus, an uptime and health monitoring dashboard), run it locally from source, then:
+The goal is to take a real open-source app (Gatus – an uptime/health monitoring dashboard), and:
 
-- Containerise it with a multi stage Dockerfile
-- Push the image to Amazon ECR
-- Deploy it on ECS Fargate behind an Application Load Balancer (ALB)
-- Add HTTPS with a custom domain using Route 53 and ACM
-- Rebuild the ClickOps setup using Terraform
-- Automate builds and deploys with GitHub Actions
-
----
-
-## Architecture at a glance
-
-Target end state:
-
-1. Gatus runs in a container on **ECS Fargate**
-2. The container image is stored in **Amazon ECR**
-3. Traffic flows:  
-   Client → **ALB** → ECS service → Gatus on port 8080  
-4. DNS is handled by **Route 53**
-5. TLS is handled by **AWS Certificate Manager**
-6. ECS stack is recreated using **Terraform**
-7. **GitHub Actions** builds images, pushes to ECR and triggers Terraform
+- Run it locally from source
+- Containerise it with a **multi-stage Dockerfile**
+- Run it as a **non-root user** in the container
+- Push the image to **Amazon ECR**
+- Later: deploy on **ECS Fargate** behind an **Application Load Balancer**, add HTTPS and a custom domain, rebuild everything with **Terraform**, and wire in **CI/CD**.
 
 ---
 
-## Tech stack
+## Tech Stack (current)
 
-- **App:** [Gatus](https://github.com/TwiN/gatus) (Go based uptime and status dashboard)
+- **App:** [Gatus](https://github.com/TwiN/gatus)
 - **Language:** Go
-- **Container:** Docker, multi stage build, non root runtime user
+- **Container:** Docker (multi-stage build, non-root runtime user)
 - **Registry:** Amazon ECR
-- **Compute:** AWS ECS Fargate (to be hooked up)
-- **Networking:** VPC, subnets, security groups, ALB, Route 53 (planned in infra)
-- **TLS:** AWS Certificate Manager (planned)
-- **IaC:** Terraform (planned in `infra/`)
+- **Cloud:** AWS (ECR now; ECS/ALB/VPC/Route 53/ACM later)
+- **IaC:** Terraform (planned)
 - **CI/CD:** GitHub Actions (planned)
 
 ---
 
-## Repository structure
+## Project Structure
 
 ```text
 .
 ├─ app/
-│  └─ gatus/               # Gatus source code used as the application
-│     ├─ config/           # Gatus configuration (endpoints, checks)
-│     ├─ Dockerfile        # Multi stage Dockerfile written for this project
-│     ├─ README.md         # Upstream Gatus README (kept for reference)
-│     └─ ...               # Other upstream Gatus files
-├─ infra/                  # Terraform infrastructure code (to be added)
+│  └─ gatus/              # Gatus source code used for this project
+│     ├─ config/          # Gatus configuration (endpoints, checks)
+│     ├─ Dockerfile       # Multi-stage Dockerfile I wrote for ECS
+│     ├─ README.md        # Upstream Gatus README (kept for reference)
+│     └─ ...              # Other upstream Gatus files
+├─ infra/                 # Terraform IaC (to be added)
 ├─ .gitignore
-└─ README.md               # This project level README
+└─ README.md              # This project README
