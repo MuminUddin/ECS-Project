@@ -18,7 +18,7 @@ The goal is to take a real open-source app (Gatus – an uptime/health monitorin
 - **Language:** Go
 - **Container:** Docker (multi-stage build, non-root runtime user)
 - **Registry:** Amazon ECR
-- **Cloud:** AWS (ECR now; ECS/ALB/VPC/Route 53/ACM later)
+- **Cloud:** AWS (ECR/ECS/ALB/VPC/Route 53/ACM)
 - **IaC:** Terraform (planned)
 - **CI/CD:** GitHub Actions (planned)
 
@@ -39,3 +39,4 @@ The goal is to take a real open-source app (Gatus – an uptime/health monitorin
 └─ README.md              # This project README
 ```
 ---
+
