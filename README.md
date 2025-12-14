@@ -37,3 +37,5 @@ The goal is to take a real open-source app (Gatus – an uptime/health monitorin
 ├─ infra/                 # Terraform IaC (to be added)
 ├─ .gitignore
 └─ README.md              # This project README
+```
+---
