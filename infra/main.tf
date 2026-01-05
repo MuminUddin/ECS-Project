@@ -34,4 +34,5 @@ module "ecs" {
   private_subnet_ids = module.vpc.private_subnet_ids
   ecs_task_sg        = module.security.ecs_task_sg
   alb_tg_arn         = module.alb.alb_tg_arn
+  ecr_repository_url = module.ecr.repository_url
 }

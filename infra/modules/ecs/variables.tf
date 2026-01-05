@@ -49,3 +49,12 @@ variable "ecs_task_sg" {
 variable "alb_tg_arn" {
     type = string
 }
+
+variable "ecr_repository_url" {
+    type = string
+}
+
+variable "image_tag" {
+  type = string
+  default = "latest"
+}

@@ -56,7 +56,7 @@ resource "aws_ecs_task_definition" "gatus_task_def" {
   [
     {
         "name": "gatus-task",
-        "image": "826199897019.dkr.ecr.eu-west-2.amazonaws.com/gatus-ecr:latest",
+        "image": "${var.ecr_repository_url}:${var.image_tag}",
         "essential": true,
         "portMappings": [
             {
