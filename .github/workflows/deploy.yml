@@ -9,7 +9,7 @@ on:
 permissions:
   id-token: write
   contents: read
-
+  
 jobs: 
     build:
         runs-on: ubuntu-latest
@@ -22,8 +22,7 @@ jobs:
           uses: aws-actions/configure-aws-credentials@v5.1.1
           with:
             aws-region: eu-west-2
-            role-to-assume: arn:aws:iam::826199897019:role/github-oidc-ecs
-        
+            role-to-assume: arn:aws:iam::826199897019:role/oidc-role
         - name: log into ECR
           run: aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 826199897019.dkr.ecr.eu-west-2.amazonaws.com
 
