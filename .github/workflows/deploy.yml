@@ -1,0 +1,65 @@
+name: Gatus ECS Workflow
+
+on:
+  push:
+    branches: [main]
+  
+  workflow_dispatch:
+    
+permissions:
+  id-token: write
+  contents: read
+
+jobs: 
+    build:
+        runs-on: ubuntu-latest
+        
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v4
+
+        - name: configure aws credentials
+          uses: aws-actions/configure-aws-credentials@v5.1.1
+          with:
+            aws-region: eu-west-2
+            role-to-assume: arn:aws:iam::826199897019:role/github-oidc
+        
+        - name: log into ECR
+          run: aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 826199897019.dkr.ecr.eu-west-2.amazonaws.com
+
+        - name: build image
+          run: docker build -t gatus-ecr .
+
+        - name: tag Docker image
+          run: docker tag gatus-ecr:latest 826199897019.dkr.ecr.eu-west-2.amazonaws.com/gatus-ecr:${{ github.sha }}
+
+        - name: push Docker image
+          run: docker push 826199897019.dkr.ecr.eu-west-2.amazonaws.com/gatus-ecr:${{ github.sha }}
+
+        - name: terraform setup
+          uses: hashicorp/setup-terraform@v3
+          with:
+            terraform_version: "1.14.0"
+
+        - name: terraform fmt
+          run: terraform fmt
+          working-directory: infra
+
+        - name: terraform initialise
+          run: terraform init
+          working-directory: infra
+
+        - name: terraform validate
+          run: terraform validate
+          working-directory: infra
+
+        - name: terraform plan
+          run: terraform plan -var="image_tag=${{ github.sha }}"
+          working-directory: infra
+
+        - name: terraform apply -auto-approve
+          run: terraform apply -var="image_tag=${{ github.sha }}
+          working-directory: infra
+
+        - name: post deploy check
+          run: curl -sS --fail-with-body https://status.muminlabs.com/health
