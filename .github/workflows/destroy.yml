@@ -1,0 +1,44 @@
+name: Destroy Gatus ECS Workflow
+
+on:
+    workflow_dispatch:
+        inputs:
+            confirm:
+                description: 'Type DESTROY to confirm'
+                required: true
+                type: string
+
+concurrency:
+  group: "${{ github.repository }}-${{ github.ref_name }}"
+  cancel-in-progress: false
+
+permissions:
+  id-token: write
+  contents: read
+  
+jobs:
+    destroy:
+        if: ${{ github.event.inputs.confirm == 'DESTROY' }}
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v4
+
+        - name: configure aws credentials
+          uses: aws-actions/configure-aws-credentials@v5.1.1
+          with:
+            aws-region: eu-west-2
+            role-to-assume: arn:aws:iam::826199897019:role/oidc-role
+
+        - name: terraform setup
+          uses: hashicorp/setup-terraform@v3
+          with:
+            terraform_version: "1.14.0"
+
+        - name: terraform init
+          run: terraform init
+          working-directory: infra
+
+        - name: terraform destroy
+          run: terraform destroy -auto-approve
+          working-directory: infra
