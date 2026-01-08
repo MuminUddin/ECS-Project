@@ -35,4 +35,5 @@ module "ecs" {
   ecs_task_sg        = module.security.ecs_task_sg
   alb_tg_arn         = module.alb.alb_tg_arn
   ecr_repository_url = module.ecr.repository_url
+  image_tag          = var.image_tag
 }
