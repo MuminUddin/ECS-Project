@@ -6,6 +6,9 @@ on:
   
   workflow_dispatch:
     
+concurrency:
+  group: "${{ github.repository }}-${{ github.ref_name }}"
+  cancel-in-progress: false
 permissions:
   id-token: write
   contents: read
@@ -41,7 +44,7 @@ jobs:
             terraform_version: "1.14.0"
 
         - name: terraform fmt
-          run: terraform fmt
+          run: terraform fmt -check
           working-directory: infra
 
         - name: terraform initialise
@@ -51,7 +54,18 @@ jobs:
         - name: terraform validate
           run: terraform validate
           working-directory: infra
+        
+        - name: tflint setup
+          uses: terraform-linters/setup-tflint@v6
+          with:
+            tflint_version: v0.52.0
 
+        - name: initialise tflint
+          run: tflint --init
+          working-directory: infra
+        - name: run tflint
+          run: tflint
+          working-directory: infra
         - name: terraform plan
           run: terraform plan -var="image_tag=${{ github.sha }}"
           working-directory: infra
