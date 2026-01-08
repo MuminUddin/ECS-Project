@@ -3,6 +3,8 @@ name: Gatus ECS Workflow
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '.github/workflows/destroy.yml'
   
   workflow_dispatch:
     
