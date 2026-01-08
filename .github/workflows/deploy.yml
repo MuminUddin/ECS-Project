@@ -57,7 +57,7 @@ jobs:
           working-directory: infra
 
         - name: terraform apply -auto-approve
-          run: terraform apply -var="image_tag=${{ github.sha }}
+          run: terraform apply -var="image_tag=${{ github.sha }}"
           working-directory: infra
 
         - name: post deploy check
