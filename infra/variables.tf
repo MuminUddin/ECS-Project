@@ -33,6 +33,6 @@ variable "vpc_cidr_block" {
 }
 
 variable "image_tag" {
-  type = string
+  type    = string
   default = "latest"
 }
