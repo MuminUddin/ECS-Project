@@ -6,6 +6,7 @@
 - [Architecture](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#architecture)
 - [Tech Stack](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#tech-stack)
 - [Project Structure](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#project-structure)
+- [Running App Locally](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#running-app-locally)
 - [Terraform Modules](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#terraform-modules)
 - [Key Infrastructure Decisions](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#key-infrastructure-decisions)
 - [Remote State](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#remote-state)
@@ -162,6 +163,7 @@ Destroy (.github/workflows/destroy.yml)
 Manual workflow (workflow_dispatch) requiring confirmation.
 - Runs terraform destroy to prevent ongoing AWS costs (NAT Gateways/ALB can be expensive)
 ---
+
 
 
 
