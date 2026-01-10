@@ -8,7 +8,8 @@
 - [Project Structure](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#project-structure)
 - [Terraform Modules](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#terraform-modules)
 - [Key Infrastructure Decisions](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#key-infrastructure-decisions)
-- 
+- [Remote State](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#remote-state)
+- [CI/CD Workflows](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#ci/cd-workflows)
 ---
 ## Overview
 This project deploys Gatus (a lightweight status/health dashboard) on AWS ECS using Fargate, exposed via an Application Load Balancer (ALB) with HTTPS using ACM and a custom domain in Route 53.
@@ -94,11 +95,11 @@ High level request flow:
 - NAT Gateways provide outbound access for tasks (for example ECR pulls)
 
 ### Security Groups
-#### ALB SG
+#### ALB SG:
 - Inbound: 80 and 443 from 0.0.0.0/0
 - Outbound: allowed
 
-#### Task SG
+#### Task SG:
 - Inbound: 8080 only from the ALB SG
 - Outbound: allowed
 
@@ -109,7 +110,7 @@ High level request flow:
 - HTTP (80) redirects to HTTPS (443)
 
 ### Health Check
-/health returns:
+- /health returns:
 ```json
 {"status":"ok"}
 ```
@@ -131,6 +132,7 @@ Runs on push to main (and supports manual trigger). Pipeline stages:
 Destroy (.github/workflows/destroy.yml)
 Manual workflow (workflow_dispatch) requiring confirmation.
 - Runs terraform destroy to prevent ongoing AWS costs (NAT Gateways/ALB can be expensive)
+
 
 
 
