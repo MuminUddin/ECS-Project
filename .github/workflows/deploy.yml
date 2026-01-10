@@ -1,16 +1,12 @@
 name: Gatus ECS Workflow
 
 on:
-  push:
-    branches: [main]
-    paths-ignore:
-      - '.github/workflows/destroy.yml'
-  
   workflow_dispatch:
-    
+
 concurrency:
   group: "${{ github.repository }}-${{ github.ref_name }}"
   cancel-in-progress: false
+
 permissions:
   id-token: write
   contents: read
