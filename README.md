@@ -164,6 +164,15 @@ Manual workflow (workflow_dispatch) requiring confirmation.
 - Runs terraform destroy to prevent ongoing AWS costs (NAT Gateways/ALB can be expensive)
 ---
 
+## Lessons Learned
+- Commit SHA tagging avoids “latest drift” and makes deployments repeatable.
+- ALB in public + tasks in private is a standard production setup that reduces attack surface.
+- OIDC removes the need to store long-lived AWS credentials in GitHub.
+- Terraform state locking prevents concurrent runs from corrupting state (and workflow concurrency helps avoid lock collisions).
+- Debugged a real-world failure caused by CPU architecture mismatch (image vs task runtime), which produced an exec format error.
+- Modular Terraform made it easier to reason about dependencies and move faster without breaking the whole stack.
+
+
 
 
 
