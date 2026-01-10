@@ -132,6 +132,10 @@ Runs on push to main (and supports manual trigger). Pipeline stages:
 Destroy (.github/workflows/destroy.yml)
 Manual workflow (workflow_dispatch) requiring confirmation.
 - Runs terraform destroy to prevent ongoing AWS costs (NAT Gateways/ALB can be expensive)
+---
+## Running App Locally
+
+
 
 
 
