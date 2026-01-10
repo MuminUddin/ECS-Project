@@ -80,6 +80,35 @@ High level request flow:
 └─ README.md
 ```
 ---
+## Running App Locally
+### Prerequisites
+- Go installed (version compatible with the Gatus codebase)
+- You are in the `app/gatus` directory
+
+### Steps
+
+1) Move into the app directory:bash
+```bash
+cd app/gatus
+```
+2) Build the Go binary:
+```
+go build -o gatus .
+```
+This creates a gatus binary in app/gatus.
+3) Ensure the config file exists in the default location Gatus expects:
+Gatus looks for:
+- Config/config.yaml
+Make sure you have:
+- A config/ directory
+- A config/config.yaml file with at least one endpoint defined
+4) Run Gatus:
+```bash
+./gatus
+```
+5)Open the UI:
+- Visit http://localhost:8080
+---
 ## Terraform Modules
 - modules/vpc: VPC, subnets, route tables, IGW, NAT Gateways
 - modules/security: security groups and SG rules (ALB + ECS tasks)
@@ -133,7 +162,7 @@ Destroy (.github/workflows/destroy.yml)
 Manual workflow (workflow_dispatch) requiring confirmation.
 - Runs terraform destroy to prevent ongoing AWS costs (NAT Gateways/ALB can be expensive)
 ---
-## Running App Locally
+
 
 
 
