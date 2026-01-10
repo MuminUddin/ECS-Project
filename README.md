@@ -11,6 +11,7 @@
 - [Key Infrastructure Decisions](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#key-infrastructure-decisions)
 - [Remote State](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#remote-state)
 - [CI/CD Workflows](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#cicd-workflows)
+- [Lessons Learned](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#lessons-learned)
 ---
 ## Overview
 This project deploys Gatus (a lightweight status/health dashboard) on AWS ECS using Fargate, exposed via an Application Load Balancer (ALB) with HTTPS using ACM and a custom domain in Route 53.
@@ -171,6 +172,7 @@ Manual workflow (workflow_dispatch) requiring confirmation.
 - Terraform state locking prevents concurrent runs from corrupting state (and workflow concurrency helps avoid lock collisions).
 - Debugged a real-world failure caused by CPU architecture mismatch (image vs task runtime), which produced an exec format error.
 - Modular Terraform made it easier to reason about dependencies and move faster without breaking the whole stack.
+
 
 
 
