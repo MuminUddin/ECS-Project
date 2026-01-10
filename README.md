@@ -88,27 +88,27 @@ High level request flow:
 - modules/ecs: ECS cluster, task definition, service, CloudWatch log group
 ---
 ## Key Infrastructure Decisions
-- Networking
+### Networking
 - ALB is placed in public subnets (internet facing)
 - ECS tasks run in private subnets
 - NAT Gateways provide outbound access for tasks (for example ECR pulls)
 
-## Security Groups
-ALB SG
+### Security Groups
+#### ALB SG
 - Inbound: 80 and 443 from 0.0.0.0/0
 - Outbound: allowed
 
-Task SG
+#### Task SG
 - Inbound: 8080 only from the ALB SG
 - Outbound: allowed
 
-## HTTPS and Domain
+### HTTPS and Domain
 - ACM certificate issued for status.muminlabs.com
 - DNS validation done via Route 53 CNAME records
 - Route 53 Alias A record points status to the ALB
 - HTTP (80) redirects to HTTPS (443)
 
-## Health Check
+### Health Check
 /health returns:
 ```json
 {"status":"ok"}
@@ -131,6 +131,7 @@ Runs on push to main (and supports manual trigger). Pipeline stages:
 Destroy (.github/workflows/destroy.yml)
 Manual workflow (workflow_dispatch) requiring confirmation.
 - Runs terraform destroy to prevent ongoing AWS costs (NAT Gateways/ALB can be expensive)
+
 
 
 
