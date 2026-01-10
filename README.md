@@ -1,7 +1,7 @@
 # ECS Project: Gatus on AWS ECS (Fargate) with Docker, Terraform & CI/CD
 ---
 ## Table of Contents
-- [Overview](https://github.com/MuminUddin/ECS-Project/README.md) 
+- [Overview](https://github.com/MuminUddin/ECS-Project/main/README.md#overview)
 ---
 ## Overview
 This project deploys Gatus (a lightweight status/health dashboard) on AWS ECS using Fargate, exposed via an Application Load Balancer (ALB) with HTTPS using ACM and a custom domain in Route 53.
@@ -124,3 +124,4 @@ Runs on push to main (and supports manual trigger). Pipeline stages:
 Destroy (.github/workflows/destroy.yml)
 Manual workflow (workflow_dispatch) requiring confirmation.
 - Runs terraform destroy to prevent ongoing AWS costs (NAT Gateways/ALB can be expensive)
+
