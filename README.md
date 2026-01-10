@@ -9,7 +9,7 @@
 - [Terraform Modules](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#terraform-modules)
 - [Key Infrastructure Decisions](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#key-infrastructure-decisions)
 - [Remote State](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#remote-state)
-- [CI/CD Workflows](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#ci/cd-workflows)
+- [CI/CD Workflows](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#cicd-workflows)
 ---
 ## Overview
 This project deploys Gatus (a lightweight status/health dashboard) on AWS ECS using Fargate, exposed via an Application Load Balancer (ALB) with HTTPS using ACM and a custom domain in Route 53.
@@ -132,6 +132,7 @@ Runs on push to main (and supports manual trigger). Pipeline stages:
 Destroy (.github/workflows/destroy.yml)
 Manual workflow (workflow_dispatch) requiring confirmation.
 - Runs terraform destroy to prevent ongoing AWS costs (NAT Gateways/ALB can be expensive)
+
 
 
 
