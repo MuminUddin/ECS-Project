@@ -42,6 +42,8 @@ High level request flow:
 4. ALB forwards traffic to ECS tasks (Fargate) on port 8080
 5. ECS tasks pull the container image from ECR
 6. Tasks run in private subnets, using NAT Gateways for outbound access (image pulls, updates, etc.)
+<img width="1392" height="1563" alt="image" src="https://github.com/user-attachments/assets/a50f3350-af13-4475-b550-dddeaa1696d8" />
+
 ---
 ## Tech Stack
 - **App:** [Gatus](https://github.com/TwiN/gatus)
@@ -172,6 +174,7 @@ Manual workflow (workflow_dispatch) requiring confirmation.
 - Terraform state locking prevents concurrent runs from corrupting state (and workflow concurrency helps avoid lock collisions).
 - Debugged a real-world failure caused by CPU architecture mismatch (image vs task runtime), which produced an exec format error.
 - Modular Terraform made it easier to reason about dependencies and move faster without breaking the whole stack.
+
 
 
 
