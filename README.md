@@ -33,7 +33,8 @@ Infrastructure is provisioned with Terraform (modular), and deployments are auto
 - Health: https://status.muminlabs.com/health → returns {"status":"ok"}
 
 - GitHub Actions deploy success: docs/screenshots/deploy-workflow.png
-- GitHub Actions destroy success: docs/screenshots/destroy-workflow.png
+<img width="1728" height="1250" alt="image" src="https://github.com/user-attachments/assets/f3c98217-a887-43c4-883d-7c18c50fde8c" />
+
 ---
 ## Architecture Diagram
 High level request flow:
@@ -175,6 +176,7 @@ Manual workflow (workflow_dispatch) requiring confirmation.
 - Terraform state locking prevents concurrent runs from corrupting state (and workflow concurrency helps avoid lock collisions).
 - Debugged a real-world failure caused by CPU architecture mismatch (image vs task runtime), which produced an exec format error.
 - Modular Terraform made it easier to reason about dependencies and move faster without breaking the whole stack.
+
 
 
 
