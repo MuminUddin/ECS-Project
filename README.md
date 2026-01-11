@@ -3,7 +3,7 @@
 ## Table of Contents
 - [Overview](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#overview)
 - [Live Endpoints](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#live-endpoints)
-- [Architecture](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#architecture)
+- [Architecture](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#architecture-diagram)
 - [Tech Stack](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#tech-stack)
 - [Project Structure](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#project-structure)
 - [Running App Locally](https://github.com/MuminUddin/ECS-Project/blob/main/README.md#running-app-locally)
@@ -34,7 +34,7 @@ Infrastructure is provisioned with Terraform (modular), and deployments are auto
 - GitHub Actions deploy success: docs/screenshots/deploy-workflow.png
 - GitHub Actions destroy success: docs/screenshots/destroy-workflow.png
 ---
-## Architecture
+## Architecture Diagram
 High level request flow:
 1. User hits status.muminlabs.com
 2. Route 53 Alias record routes traffic to the ALB
@@ -174,6 +174,7 @@ Manual workflow (workflow_dispatch) requiring confirmation.
 - Terraform state locking prevents concurrent runs from corrupting state (and workflow concurrency helps avoid lock collisions).
 - Debugged a real-world failure caused by CPU architecture mismatch (image vs task runtime), which produced an exec format error.
 - Modular Terraform made it easier to reason about dependencies and move faster without breaking the whole stack.
+
 
 
 
