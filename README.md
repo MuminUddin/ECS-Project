@@ -27,13 +27,16 @@ Infrastructure is provisioned with Terraform (modular), and deployments are auto
 - Separate manual workflow to destroy resources to control AWS costs
 ---
 ## Live Endpoints
-- App: https://status.muminlabs.com
+### App: https://status.muminlabs.com
 ![B8BC9FB4-570F-4E12-A5D0-CA27144E259C_1_105_c](https://github.com/user-attachments/assets/87f340ee-3612-4173-8270-5e350570aab7)
 
-- Health: https://status.muminlabs.com/health → returns {"status":"ok"}
+### Health: https://status.muminlabs.com/health → returns {"status":"ok"}
 
-- GitHub Actions deploy success: docs/screenshots/deploy-workflow.png
+### Deploy Workflow
 <img width="1728" height="1250" alt="image" src="https://github.com/user-attachments/assets/f3c98217-a887-43c4-883d-7c18c50fde8c" />
+
+### Destroy Workflow
+<img width="1941" height="1256" alt="image" src="https://github.com/user-attachments/assets/2408b3b6-d793-4ae9-b2d8-5f0a69b6abee" />
 
 ---
 ## Architecture Diagram
@@ -176,6 +179,7 @@ Manual workflow (workflow_dispatch) requiring confirmation.
 - Terraform state locking prevents concurrent runs from corrupting state (and workflow concurrency helps avoid lock collisions).
 - Debugged a real-world failure caused by CPU architecture mismatch (image vs task runtime), which produced an exec format error.
 - Modular Terraform made it easier to reason about dependencies and move faster without breaking the whole stack.
+
 
 
 
